@@ -9,10 +9,11 @@ using UnityEngine;
  */
 public class AreaEffector : MonoBehaviour {
     float time = 0;
+    public GameObject gameObject;
     ParticleSystem particle;
 	// Use this for initialization
 	void Start () {
-        particle = GetComponent<ParticleSystem>();
+
     }
 	
 	// Update is called once per frame
@@ -20,10 +21,11 @@ public class AreaEffector : MonoBehaviour {
         time = time + Time.deltaTime;
         if (time > 5)
         {
-            if (!particle.isStopped)
-                particle.Stop();
+            if (gameObject.active)
+                gameObject.SetActive(false);
+                
             else
-                particle.Play();
+                gameObject.SetActive(true);
             time = 0;
         }
 	}
